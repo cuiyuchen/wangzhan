@@ -1,0 +1,14 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	background: #fff;
+}
+.container-c {
+	padding:50px;
+	width:310px;
+	margin:200px auto;
+	border: 1px solid #ccc;
+	margin-bottom: 0
+}

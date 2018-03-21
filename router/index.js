@@ -7,8 +7,17 @@ console.info(controller);
 
 //router.get('/login',controller.main)
 
-router.get('/captcha',controller.captcha)
 
-router.get('/login',controller.login)
+router.get('/login',async (ctx,next)=>{   //渲染登陆页面
+	 await ctx.render('admin/login');
+})
+
+router.get('/admin',async (ctx,next)=>{  //渲染首页
+	 await ctx.render('admin/index');
+})
+
+router.get('/captcha',controller.captcha)  //验证码
+
+router.post('/login',controller.login)  //登陆
 
 module.exports = router

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" href="lib/layui/css/layui.css">
+	<script src='lib/layui/layui.js'></script>
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="lib/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container-c">
+		<div class="layui-form layui-form-pane" action="">
+ 		<div class="layui-form-item">
+ 		   <label class="layui-form-label">用户名</label>
+ 		   <div class="layui-input-inline">
+ 		     <input type="text" lay-verify="title" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+ 		   </div>
+ 		  <!--  <div class="layui-form-mid layui-word-aux">请务必填写用户名</div> -->
+ 		 </div>
+ 		<div class="layui-form-item">
+ 		   <label class="layui-form-label">密码</label>
+ 		   <div class="layui-input-inline">
+ 		     <input type="password" lay-verify="pass" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+ 		   </div>
+ 		 <!--   <div class="layui-form-mid layui-word-aux">请务必填写用户名</div> -->
+ 		 </div>
+ 		<div class="layui-form-item">
+ 		   <div class="layui-input-inline">
+ 		     <input type="text"  style="float:left" lay-verify="yanzhengma" name="checkcode" placeholder="请正确的验证码" autocomplete="off" class="layui-input">
+ 		    </div>
+ 		     <img src="" id='captchaimg' alt="" style="float:left;margin-top:5px" id='imgbox'>
+ 		</div>
+ 		<div class="layui-form-item">
+		    <div class="layui-input-inline" style="padding-left:70px">
+		      <button class="layui-btn" id='submit' lay-submit="" lay-filter="demo1">立即登陆</button>
+		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		</div>
+ 		  <!--  <div class="layui-form-mid layui-word-aux">请务必填写用户名</div> -->
+ 		 </div>
+	</div>
+	</div>
+ 	
+</body>
+</html>
+<script>
+$(function(){
+  setTimeout(function(){
+     $.get('http://localhost:3000/captcha',function(data){
+      $('#captchaimg').attr('src',data)
+    })
+
+   },3000)
+   
+  layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+
+  
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得2个字符啊';
+      }
+    },
+    pass: [/(.+){6,12}$/, '密码必须6到12位'],
+    yanzhengma:function(value){
+      if(value.length!=4){
+        return '请输入四位验证码'
+      }
+    }
+    
+  });
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    $.post('/login',data.field,function(res){
+      console.info(res);
+    })
+    //return false;
+  });
+  
+});
+})
+	
+</script>
