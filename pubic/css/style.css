@@ -12,3 +12,77 @@ html,body{
 	border: 1px solid #ccc;
 	margin-bottom: 0
 }
+.container-reg{
+	padding:50px;
+	padding-left:140px;
+	padding-right:140px;
+	width:310px;
+	margin:50px auto;
+	border: 1px solid #ccc;
+	margin-bottom: 0
+}
+.layui-tab-title li.layui-noclose .layui-tab-close{
+		display: none;
+	}
+.layui-tab{margin:0;}
+
+
+/* 自定义css */
+.admin-header-item-mobile{
+	position: absolute; right: 0px; height: 70px;line-height: 70px; 
+	padding: 0 20px; text-align: center; top:0;
+	display: none;
+}
+
+.admin-nav-tree .layui-nav-child a {
+	padding-left: 30px;
+}
+
+.admin-nav-card{
+	border: 0;
+	margin: 0;
+	box-shadow:none;
+}
+.admin-nav-card .layui-icon{
+	position: relative;
+}
+.admin-nav-card .layui-tab-item iframe{
+	width: 100%;
+	border: 0;
+	height: 100%;
+}
+.admin-nav-card>.layui-tab-title{
+	border-bottom: 1px solid #1AA094;
+}
+.admin-nav-card .layui-tab-title cite{
+	font-style: normal;
+	padding-left: 5px;
+}
+.admin-nav-card>.layui-tab-title .layui-this{
+	color: white;
+    background-color: #1AA094;
+}
+.admin-nav-card>.layui-tab-title .layui-this:after{
+	border-bottom: 0;
+}
+.admin-header-user img{
+	width: 40px; height: 40px; border-radius: 100%;    
+	/*position: relative;
+    top: 15px;*/
+}
+.admin-header-user .layui-nav-more{
+	top:33px;
+}
+.admin-header-user .layui-nav-mored{
+	top: 26px;
+}
+.userinfo{
+	overflow: hidden;
+}
+
+.layui-nav-child dd{
+	text-align: center;
+	color:#000;
+	line-height: 30px;
+	cursor: pointer;
+}

@@ -5,7 +5,8 @@ const schemeser = new mongoose.Schema({
 	password:String,
 	realname:String,
 	phone:String,
-	status:String
+	status:String,
+	email:String
 })
 
 mongoose.model('user',schemeser);

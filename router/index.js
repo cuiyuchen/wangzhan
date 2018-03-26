@@ -16,8 +16,18 @@ router.get('/admin',async (ctx,next)=>{  //渲染首页
 	 await ctx.render('admin/index');
 })
 
-router.get('/captcha',controller.captcha)  //验证码
+router.get('/register',async(ctx,next)=>{  //渲染注册页面
+	await ctx.render('admin/register')
+})
+
+router.post('/captcha',controller.captcha)  //验证码
 
 router.post('/login',controller.login)  //登陆
+
+router.post('/register',controller.register)  //注册
+
+router.post('/getuserinfo',controller.userinfo)  //获取用户基本信息
+
+router.post('/exit',controller.exit)  //获取用户基本信息
 
 module.exports = router

@@ -46,13 +46,14 @@
 </html>
 <script>
 $(function(){
-  setTimeout(function(){
-     $.get('http://localhost:3000/captcha',function(data){
-      $('#captchaimg').attr('src',data)
-    })
+  checkcode()
+    function checkcode(){
+      $.post('/captcha',function(data){
+        $('#captchaimg').attr('src',data)
+      })
+    }
+  
 
-   },3000)
-   
   layui.use(['form', 'layedit', 'laydate'], function(){
   var form = layui.form
   ,layer = layui.layer
@@ -80,7 +81,12 @@ $(function(){
       title: '最终的提交信息'
     })
     $.post('/login',data.field,function(res){
-      console.info(res);
+      if(res.status==0){
+       location.href='/admin'
+      }else{
+        checkcode()
+        layer.alert(res.error_message, {icon: 2});
+      }
     })
     //return false;
   });

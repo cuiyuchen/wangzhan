@@ -41,20 +41,24 @@ app.use(koabody());
 
 // 校验是不是登陆状态
 
-// app.use(async (ctx,next)=>{
-// 	let user = ctx.session.user;
-// 	let url = ctx.url
-// 	if(!user){
-// 		if(url=='/login'||url=='/register'){
-// 			await next()
-// 		}else{
-// 			ctx.status=200
-// 			ctx.redirect('/login')
-// 		}
-// 	}else{
-// 		next()
-// 	}
-// });
+app.use(async (ctx,next)=>{
+	let user = ctx.session.user;
+	let url = ctx.url
+	if(!user){
+		if(url=='/login'||url=='/register'){
+			await next()
+		}else{
+			ctx.status=200;
+			if(url!='/captcha'){
+				ctx.redirect('/login')
+			}else{
+				await next()
+			}
+		}
+	}else{
+		await next()
+	}
+});
 
 
 const router = require('./router/index.js'); //路由
